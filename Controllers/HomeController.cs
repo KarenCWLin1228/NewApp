@@ -43,7 +43,6 @@ namespace NewApp.Controllers
                         Title = "test test",
                         ReleaseDate = DateTime.Parse("2020-09-03"),
                         Link = "https://ithelp.ithome.com.tw/articles/10233371",
-                        Count = 0
                     };
                     _dbContext.Article.Add(article);
                     var i = _dbContext.SaveChanges();
