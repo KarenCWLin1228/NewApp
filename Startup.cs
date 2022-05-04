@@ -64,7 +64,7 @@ namespace NewApp
                     
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=React}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
