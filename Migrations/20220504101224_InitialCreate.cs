@@ -15,8 +15,7 @@ namespace NewApp.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Title = table.Column<string>(type: "TEXT", nullable: true),
                     ReleaseDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    Link = table.Column<string>(type: "TEXT", nullable: true),
-                    Count = table.Column<decimal>(type: "TEXT", nullable: false)
+                    Link = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {

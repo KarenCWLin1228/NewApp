@@ -22,9 +22,6 @@ namespace NewApp.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<decimal>("Count")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Link")
                         .HasColumnType("TEXT");
 

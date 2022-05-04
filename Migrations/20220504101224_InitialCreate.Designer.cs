@@ -9,7 +9,7 @@ using NewApp.Dao;
 namespace NewApp.Migrations
 {
     [DbContext(typeof(FreeDbContext))]
-    [Migration("20220504081809_InitialCreate")]
+    [Migration("20220504101224_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,9 +23,6 @@ namespace NewApp.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
-
-                    b.Property<decimal>("Count")
-                        .HasColumnType("TEXT");
 
                     b.Property<string>("Link")
                         .HasColumnType("TEXT");

@@ -41,7 +41,7 @@ namespace NewApp.Controllers
                     var article = new Article
                     {
                         Title = "test test",
-                        ReleaseDate = DateTime.Parse("2020-09-03"),
+                        ReleaseDate = DateTime.Parse("2020-09-03").ToString(),
                         Link = "https://ithelp.ithome.com.tw/articles/10233371",
                     };
                     _dbContext.Article.Add(article);
