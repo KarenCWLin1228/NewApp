@@ -29,7 +29,7 @@ namespace NewApp.Controllers
 
         public IActionResult Index()
         {
-            var message = "";
+            //var message = "";
             //using (_dbContext)
             //{
             //    var user = new User
