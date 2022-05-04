@@ -40,6 +40,7 @@ namespace NewApp.Controllers
                 {
                     var article = new Article
                     {
+                        ID = 2,
                         Title = "test test",
                         ReleaseDate = DateTime.Parse("2020-09-03").ToString(),
                         Link = "https://ithelp.ithome.com.tw/articles/10233371",
