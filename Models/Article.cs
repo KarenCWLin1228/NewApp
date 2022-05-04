@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NewApp.Models
 {
@@ -14,6 +15,7 @@ namespace NewApp.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy/MM/dd}")]
         public DateTime ReleaseDate { get; set; }
         public string Link { get; set; }
+        [Column(TypeName = "decimal(18,4)")]
         public decimal Count { get; set; }
     }
 }
