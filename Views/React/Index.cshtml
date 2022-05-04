@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <title>React Practice</title>
+   <!-- 開發時使用 -->
+   <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+   <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+   <style>
+   .red-font{
+    color: red;
+   }
+   </style>
+</head>
+<body>
+	<div id="app"></div>
+</body>
+
+<script type="text/babel">
+
+	function getFullName(user)
+	{
+		return user.firstName + ' ' + user.lastName;
+	}
+
+	const user = {
+	  firstName: '陳',
+	  lastName: '小羽'
+	};
+
+	const elm = (<div className="red-font" style={{fontSize: '18px'}}>
+	 Hello, {getFullName(user)} !!!
+	</div>);
+
+	ReactDOM.render(
+		elm,
+		document.getElementById('app')
+	);
+</script>
+
+</html>

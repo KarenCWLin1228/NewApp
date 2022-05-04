@@ -1,0 +1,82 @@
+﻿@model IEnumerable<NewApp.ViewModels.Cart>
+@inject IJsonHelper Json;
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Splendid Food</title>
+  <link rel="stylesheet" href="./css/style.min.css">
+   <!-- 開發時使用 -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+  <style>
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 99;
+    }
+
+    .top-bar-cart-link {
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <br> <br> <br>
+  Err: @ViewBag.Exp
+  @foreach (var item in Model)
+  {
+    <p>@item.ProductName : @item.UnitPrice </p>  
+  }
+  <div id="app">
+    <header class="top-bar spread">
+      <div>
+        <Menus />
+      </div>
+      <a v-on:click="toggleCart" class="top-bar-cart-link">
+        <i class="icofont-cart-alt icofont-1x"></i>
+        <span>Cart ({{this.$store.state.totalQty}})</span>
+      </a>
+    </header>
+    
+    <div class="splash-container" v-show="this.$store.state.isShowHome">
+      <div class="splash">
+        <h1>Splendid Food</h1>
+      </div>
+    </div>
+
+    <main class="wrapper">
+      <div v-show="this.$store.state.isShowHome">
+        <h2>Recommended</h2>
+        <div class="recommended">
+          <Products v-for="product in products.slice(0,3)" :key="product.id" v-bind:product="product" />
+        </div>
+      </div>
+      <div v-show="this.$store.state.isShowProducts">
+        <br/><br/>
+        <Products v-for="product in products" :key="product.id" v-bind:product="product" />
+      </div>
+      <div v-show="this.$store.state.isShowOrders">
+        <br/><br/>
+        <Orders />
+      </div>
+    </main>
+
+    
+
+    <Cart v-show="isShowCart" />
+
+    <footer>
+    </footer>
+
+  </div>
+
+</body>
+<script>
+  var carts = @Html.Raw(Json.Serialize(Model));
+</script>
+<script src="./js/main.bundle.js"></script>
+
+</html>
