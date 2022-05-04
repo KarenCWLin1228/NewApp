@@ -33,6 +33,8 @@ namespace NewApp.Controllers
 
         public IActionResult Index()
         {
+            var id = new Random().Next();
+
             try
             {
                 var message = "";
@@ -40,7 +42,7 @@ namespace NewApp.Controllers
                 {
                     var article = new Article
                     {
-                        ID = new Random().Next(),
+                        ID = id,
                         Title = "test test",
                         ReleaseDate = DateTime.Parse("2020-09-03").ToString(),
                         Link = "https://ithelp.ithome.com.tw/articles/10233371",
@@ -53,7 +55,7 @@ namespace NewApp.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.Exp = ex.InnerException.Message;
+                ViewBag.Exp = ex.InnerException.Message + $"ID: {id}";
             }
             
 
