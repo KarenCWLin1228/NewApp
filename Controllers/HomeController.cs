@@ -33,21 +33,29 @@ namespace NewApp.Controllers
 
         public IActionResult Index()
         {
-            var message = "";
-            using (_dbContext)
+            try
             {
-                var article = new Article
+                var message = "";
+                using (_dbContext)
                 {
-                    Title = "Day03 Resource Group 資源群組",
-                    ReleaseDate = DateTime.Parse("2020-09-03"),
-                    Link = "https://ithelp.ithome.com.tw/articles/10233371",
-                    Count = 0
-                };
-                _dbContext.Article.Add(article);
-                var i = _dbContext.SaveChanges();
+                    var article = new Article
+                    {
+                        Title = "Day03 Resource Group 資源群組",
+                        ReleaseDate = DateTime.Parse("2020-09-03"),
+                        Link = "https://ithelp.ithome.com.tw/articles/10233371",
+                        Count = 0
+                    };
+                    _dbContext.Article.Add(article);
+                    var i = _dbContext.SaveChanges();
 
-                message = i > 0 ? "資料寫入成功" : "資料寫入失敗";
+                    message = i > 0 ? "資料寫入成功" : "資料寫入失敗";
+                }
             }
+            catch (Exception ex)
+            {
+                ViewBag.Exp = ex.Message;
+            }
+            
 
             var carts = new List<Cart>();
 
