@@ -29,6 +29,7 @@ namespace NewApp.Controllers
 
         public IActionResult Index()
         {
+            //test
             //var message = "";
             //using (_dbContext)
             //{
