@@ -23,13 +23,12 @@ namespace NewApp.Controllers
         {
             _logger = logger;
             _config = config;
-            _redis = new RedisDataAgent(config);
+            //_redis = new RedisDataAgent(config);
             _dbContext = dbContext;
         }
 
         public IActionResult Index()
         {
-            //test
             //var message = "";
             //using (_dbContext)
             //{
@@ -48,6 +47,7 @@ namespace NewApp.Controllers
 
             try 
             {
+                /*
                 var carts_redis = _redis.GetListValue<List<Cart>>("carts");
                 if(carts_redis == null || !carts_redis.Any())
                 {
@@ -60,6 +60,7 @@ namespace NewApp.Controllers
                 else{
                     carts.AddRange(carts_redis);
                 }
+                */
             }
             catch (Exception ex)
             {
