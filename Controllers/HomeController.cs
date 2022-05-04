@@ -10,6 +10,7 @@ using NewApp.ViewModels;
 using RedisAPI;
 using Microsoft.AspNetCore.Http;
 using NewApp.Dao;
+using NewApp.Models;
 
 namespace NewApp.Controllers
 {
@@ -18,8 +19,11 @@ namespace NewApp.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IConfiguration _config;
         private RedisDataAgent _redis;
-        private readonly MyDbContext _dbContext;
-        public HomeController(ILogger<HomeController> logger, IConfiguration config, MyDbContext dbContext)
+        //private readonly MyDbContext _dbContext;
+        private readonly FreeDbContext _dbContext;
+        public HomeController(ILogger<HomeController> logger, IConfiguration config
+            /*, MyDbContext dbContext*/,
+            FreeDbContext dbContext)
         {
             _logger = logger;
             _config = config;
@@ -29,19 +33,21 @@ namespace NewApp.Controllers
 
         public IActionResult Index()
         {
-            //var message = "";
-            //using (_dbContext)
-            //{
-            //    var user = new User
-            //    {
-            //        User_ID = "00005",
-            //        User_Name = "Raymond"
-            //    };
-            //    _dbContext.User.Add(user);
-            //    var i = _dbContext.SaveChanges();
+            var message = "";
+            using (_dbContext)
+            {
+                var article = new Article
+                {
+                    Title = "Day03 Resource Group 資源群組",
+                    ReleaseDate = DateTime.Parse("2020-09-03"),
+                    Link = "https://ithelp.ithome.com.tw/articles/10233371",
+                    Count = 0
+                };
+                _dbContext.Article.Add(article);
+                var i = _dbContext.SaveChanges();
 
-            //    message = i > 0 ? "資料寫入成功" : "資料寫入失敗";
-            //}
+                message = i > 0 ? "資料寫入成功" : "資料寫入失敗";
+            }
 
             var carts = new List<Cart>();
 

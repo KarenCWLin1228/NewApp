@@ -29,9 +29,15 @@ namespace NewApp
             services.AddControllersWithViews();
             services.AddRazorPages().AddRazorRuntimeCompilation();
 
-            services.AddDbContext<MyDbContext>(options => 
-                options.UseMySql(Configuration.GetConnectionString("MySQL"), 
-                MySqlServerVersion.LatestSupportedServerVersion));
+            //services.AddDbContext<MyDbContext>(options => 
+            //    options.UseMySql(Configuration.GetConnectionString("MySQL"), 
+            //    MySqlServerVersion.LatestSupportedServerVersion));
+
+            //services.AddDbContext<FreeDbContext>(options =>
+            //    options.UseSqlite(Configuration.GetConnectionString("ArticleContext")));
+
+            services.AddDbContext<FreeDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("FreeDbContext")));
 
             services.AddMvc();
         }
