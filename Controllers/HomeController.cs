@@ -53,7 +53,7 @@ namespace NewApp.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.Exp = ex.Message;
+                ViewBag.Exp = ex.InnerException.Message;
             }
             
 
