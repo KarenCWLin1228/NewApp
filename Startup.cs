@@ -15,12 +15,14 @@ namespace NewApp
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
+            _env = env;
         }
 
         public IConfiguration Configuration { get; }
+        private readonly IWebHostEnvironment _env;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -33,19 +35,24 @@ namespace NewApp
             //    options.UseMySql(Configuration.GetConnectionString("MySQL"), 
             //    MySqlServerVersion.LatestSupportedServerVersion));
 
-            //services.AddDbContext<FreeDbContext>(options =>
-            //    options.UseSqlite(Configuration.GetConnectionString("ArticleContext")));
-
-            services.AddDbContext<FreeDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("FreeDbContext")));
+            if (_env.IsDevelopment())
+            {
+                services.AddDbContext<FreeDbContext>(options =>
+                    options.UseSqlite(Configuration.GetConnectionString("ArticleContext")));
+            }
+            else
+            {
+                services.AddDbContext<FreeDbContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("FreeDbContext")));
+            }
 
             services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
-            if (env.IsDevelopment())
+            if (_env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
