@@ -37,6 +37,8 @@ namespace NewApp.Controllers
 
             try
             {
+                _logger.LogInformation("Testing DB Connection");
+
                 var message = "";
                 using (_dbContext)
                 {
